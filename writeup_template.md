@@ -19,14 +19,15 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
+[image1]: ./images_writeup/image_1.png "Visualization1"
+[image2]: ./images_writeup/image_2.png "Visualization2"
+[image3]: ./images_writeup/bar_1.png "bar_Train"
+[image4]: ./images_writeup/bar_2.png "bar_Test"
+[image5]: ./images_writeup/bar_3.png "bar_validation"
+[image6]: ./images_writeup/web_signs.png "web signs"
+[image7]: ./images_writeup/prediction_web_signs.png "Prediction of web signs"
+[image8]: ./images_writeup/softmax_probabilities.png "softmax probabilities"
+[image9]: ./images_writeup/accuracy_achieved.png "Accuracy achieved"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -36,26 +37,36 @@ The goals / steps of this project are the following:
 
 #### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
 
-You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
+You're reading it! and here is a link to my [project code](https://github.com/aikonbrasil/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
 
 ### Data Set Summary & Exploration
 
 #### 1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
 
-I used the pandas library to calculate summary statistics of the traffic
+I used the numpy library to calculate summary statistics of the traffic
 signs data set:
 
-* The size of training set is ?
-* The size of the validation set is ?
-* The size of test set is ?
-* The shape of a traffic sign image is ?
-* The number of unique classes/labels in the data set is ?
+* The size of training set is 34799
+* The size of the validation set is 4410
+* The size of test set is 12630
+* The shape of a traffic sign image is (32, 32, 3)
+* The number of unique classes/labels in the data set is 43
 
 #### 2. Include an exploratory visualization of the dataset.
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
+Here is an exploratory visualization of the data set. It is a bar chart showing how the data is not uniform. I mean that in some cases the number of samples is near 2000 and in other cases is less than 100, specially for the Train data samples group.
 
-![alt text][image1]
+in the next image it is possible to check the distribution of Train samples
+
+![alt text][image3]
+
+in the next image it is possible to check the distribution of Test samples
+
+![alt text][image4]
+
+in the next image it is possible to check the distribution of Validation samples
+
+![alt text][image5]
 
 ### Design and Test a Model Architecture
 
