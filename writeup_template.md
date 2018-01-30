@@ -28,6 +28,10 @@ The goals / steps of this project are the following:
 [image7]: ./images_writeup/prediction_web_signs.png "Prediction of web signs"
 [image8]: ./images_writeup/softmax_probabilities.png "softmax probabilities"
 [image9]: ./images_writeup/accuracy_achieved.png "Accuracy achieved"
+[image10]: ./images_writeup/pre_processing.png "Pre processing information process"
+[image11]: ./images_writeup/pre_processing2.png "Pre processing information process"
+[image12]: ./images_writeup/adding_samples.png "Adding Samples"
+
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -72,23 +76,22 @@ in the next image it is possible to check the distribution of Validation samples
 
 #### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
-As a first step, I decided to convert the images to grayscale because ...
+As a first step, I decided to normalize each sample image between -1 and 1. Here, I also converted values to 32-bit. After that I convert the images to grayscale to facilitate processing focusing in just one channel color. Image translation to create a duplicated information with random translation in order to create diversity in Train dataset. Image rotation to create a duplicated information with random rotation between -12° and 12º in order to create diversity in Train dataset. Image perspective (zoom) in order to create a duplicated information with random perspective in order to create diversity in Train dataset. Finally I applied a script for duplicating custom images to obtain homonegenous number of samples in the train information.
 
-Here is an example of a traffic sign image before and after grayscaling.
+Here is an example of a traffic sign image before and after grayscaling and normalizing.
 
-![alt text][image2]
+![alt text][image10]
 
-As a last step, I normalized the image data because ...
 
-I decided to generate additional data because ... 
+Here is an example of rotation, translation, zoom, and white adding to images that I applied to new samples:
 
-To add more data to the the data set, I used the following techniques because ... 
+![alt text][image11]
 
-Here is an example of an original image and an augmented image:
+I decided to generate additional data because the distribution information indicates that some classes could be small in comparison of other ones. I increased the samples of some classes in order to provide similar chances to all samples during learning process.
 
-![alt text][image3]
+To add more data to the the data set, I used the transformation imaegs  techniques described before. 
 
-The difference between the original data set and the augmented data set is the following ... 
+![alt text][image12]
 
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
