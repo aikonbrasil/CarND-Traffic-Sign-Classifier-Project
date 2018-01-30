@@ -56,13 +56,16 @@ signs data set:
 
 Here is an exploratory visualization of the data set. It is a bar chart showing how the data is not uniform. I mean that in some cases the number of samples is near 2000 and in other cases is less than 100, specially for the Train data samples group.
 
-in image it is possible to check
+in the next image it is possible to check the distribution of Train samples
+
 ![alt text][image3]
 
-in image it is possible to check
+in the next image it is possible to check the distribution of Test samples
+
 ![alt text][image4]
 
-in image it is possible to check
+in the next image it is possible to check the distribution of Validation samples
+
 ![alt text][image5]
 
 ### Design and Test a Model Architecture
