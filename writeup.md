@@ -161,12 +161,9 @@ I included five new German Traffic signs found on the web. They are visualized i
 The main particularity in all cases is the image resolution. In case of Yield signal it included a custome background of clouds, it is similar in the case of Speed limit (20km/h) signal.
 
 
-[image7]: ./images_writeup/prediction_web_signs.png "Prediction of web signs"
-[image8]: ./images_writeup/softmax_probabilities.png "softmax probabilities"
-[image9]: ./images_writeup/accuracy_achieved.png "Accuracy achieved"
-[image10]: ./images_writeup/pre_processing.png "Pre processing information process"
-[image11]: ./images_writeup/pre_processing2.png "Pre processing information process"
-[image12]: ./images_writeup/adding_samples.png "Adding Samples"
+
+![alt text][image7] 
+![alt text][image8] 
 
 
 The first image might be difficult to classify because ...
