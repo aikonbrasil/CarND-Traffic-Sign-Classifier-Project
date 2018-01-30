@@ -55,6 +55,7 @@ signs data set:
 #### 2. Include an exploratory visualization of the dataset.
 
 Here is an exploratory visualization of the data set. It is a bar chart showing how the data is not uniform. I mean that in some cases the number of samples is near 2000 and in other cases is less than 100, specially for the Train data samples group.
+
 in image it is possible to check
 ![alt text][image3]
 
