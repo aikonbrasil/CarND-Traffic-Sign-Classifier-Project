@@ -24,7 +24,7 @@ The goals / steps of this project are the following:
 [image3]: ./images_writeup/bar_1.png "bar_Train"
 [image4]: ./images_writeup/bar_2.png "bar_Test"
 [image5]: ./images_writeup/bar_3.png "bar_validation"
-[image6]: ./images_writeup/web_signs.png "web signs"
+[image6]: ./images_writeup/web_signs.PNG "web signs"
 [image7]: ./images_writeup/prediction_web_signs.PNG "Prediction of web signs"
 [image8]: ./images_writeup/softmax_probabilities.PNG "softmax probabilities"
 [image9]: ./images_writeup/accuracy_achieved.png "Accuracy achieved"
