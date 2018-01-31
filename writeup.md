@@ -71,9 +71,9 @@ in the next image it is possible to check the distribution of Validation samples
 
 ### Design and Test a Model Architecture
 
-#### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
+#### 1. Describe how you pre-processed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each pre-processing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
-As a first step, I decided to normalize each sample image between -1 and 1. Here, I also converted each pixel values to 32-bit data type. After that I also converted the images to grayscale to facilitate processing focusing in just one channel color. As a complement I performend the next image transformations:
+As a first step, I decided to normalize each sample image between -1 and 1. Here, I also converted each pixel values to 32-bit data type. After that I also converted the images to grayscale to facilitate processing focusing in just one channel color. As a complement I performed the next image transformations:
 * image translation (soft random shift) in order to create a duplicated information with random translation in order to create diversity in train samples dataset, 
 * image rotation in order to create a duplicated information with random rotation between -12° and 12º in order to create diversity in Train dataset,
 * image perspective transformation (zoom) in order to create a duplicated information with random perspective. I also added a white noise to the image.
@@ -84,7 +84,7 @@ Here is an example of a traffic sign image before and after grayscaling and norm
 ![alt text][image10]
 
 
-Here is an example of rotation, translation, zoom, and white noise adding to an images. Parameters of each transformation were choosed randomly.
+Here is an example of rotation, translation, zoom, and white noise adding to an images. Parameters of each transformation were chosen randomly.
 
 ![alt text][image11]
 
@@ -115,14 +115,14 @@ My final model consisted of the following layers:
 | RELU					|												|
 | Fully connected		| input=84, output=43       									|
 
-I have added tunable keep_prob, the best value were dropout_custome = 0.8, this dropout layer was inserted after each activation layer (to avoid network overfitting).
+I have added tunable keep_prob, the best value were dropout_custome = 0.8, this dropout layer was inserted after each activation layer (to avoid network over fitting).
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
-The optimizer used is based on Cross entropy and softmax which are tools provided by TensorFlow. Batch size=128 because in other cases the training process indicated an accuracy less than 9.3. Other important parameter was the number of epochs, that is why that in order to guarantee the convergence of Neural network learning process we used 100 epochs (using Amazon AWS was used in this scenario). I have added also a tunable keep_prob, this dropout layer was inserted after each activation layer.
+The optimizer used is based on Cross entropy and softmax which are tools provided by TensorFlow. Batch size=128 because in other cases the training process indicated an accuracy less than 9.3. Other important parameter was the number of epochs, that is why that in order to guarantee the convergence of Neural network learning process we used 100 epochs ( Amazon AWS was used in this scenario). I have added also a tunable keep_prob, this dropout layer was inserted after each activation layer.
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
-In spite that I run 100 epochs the training process indicates that validation accuracy was greated than 0.93 in the epoch number 15 (the first time that validation accuracy was more than 0.93). When training process finished, we evaluated the accuracy, the value of accuracy was 0.932.
+In spite that I run 100 epochs the training process indicates that validation accuracy was more than 0.93 in the epoch number 15 (the first time that validation accuracy was more than 0.93). When training process finished, we evaluated the accuracy, the value of accuracy was 0.932.
 
 My final model results were:
 * training set accuracy of 1
@@ -152,7 +152,7 @@ I included five new German Traffic signs that I found on the web. They are  visu
 * 'slipperyroad_23.jpg'
 * 'keep_right_38.jpg'
 
-The main particularity in all cases is the image resolution. In case of Yield signal it included a custome background of clouds.
+The main particularity in all cases is the image resolution. In case of Yield signal it included a custom background of clouds.
 
 ![alt text][image7] 
 
@@ -166,7 +166,7 @@ Here are the results of the prediction:
 | Image			        |     Prediction	        					|    Label     |
 |:---------------------:|:-------------------------------:|:----------|
 | Speed limit (20km/h)      		| Speed limit (20km/h)   	 |  0								|   
-| No passing     			| No passing 										| 9								|  
+| No passing     			| No passing  										| 9								|  
 | Yield					| Yield											|  13								|  
 | Slippery road	      		| Slippery road				 				| 23								|  
 | Keep right			| Keep right      							|  38								|  
@@ -185,10 +185,10 @@ For the first image, the model is sure that this is a Speed limit (20km/h) sign 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | .99         			| Speed limit (20km/h)   									| 
-| .00     				| Speed limit (120km/h) 										|
+| .00     				| Speed limit (120km/h)  										|
 | .00					| Slippery road									|
 | .00	      			| Speed limit (80km/h)				 				|
-| .00				    | Roundabout mandatory    							|
+| .00				    | Roundabout mandatory     							|
 
 
 For the second image, the model is sure that this is a No passing sign (probability of 0.9975), and the image does contain a No passing sign. The top five soft max probabilities were
@@ -232,7 +232,5 @@ For the fifth image, the model is sure that this is a No passing sign (probabili
 | .00	      			| Speed limit (80km/h) 				|
 | .00				    | Speed limit (120km/h)							|
 
-### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
-#### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
-
-
+### Note
+It looks that the prediction is ok, however, I think that in some traffic signs the deep learning model will fail. I were extremely optimistic in all web images.
