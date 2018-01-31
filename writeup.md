@@ -2,8 +2,6 @@
 
 ## Writeup
 
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
 ---
 
 **Build a Traffic Sign Recognition Project**
@@ -39,7 +37,7 @@ The goals / steps of this project are the following:
 ---
 ### Writeup / README
 
-#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
+#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. The submission includes the project code.
 
 You're reading it! and here is a link to my [project code](https://github.com/aikonbrasil/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
 
@@ -47,8 +45,7 @@ You're reading it! and here is a link to my [project code](https://github.com/ai
 
 #### 1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
 
-I used the numpy library to calculate summary statistics of the traffic
-signs data set:
+I used the numpy library to calculate summary statistics of the traffic signs data set:
 
 * The size of training set is 34799
 * The size of the validation set is 4410
@@ -58,7 +55,7 @@ signs data set:
 
 #### 2. Include an exploratory visualization of the dataset.
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data is not uniform. I mean that in some cases the number of samples is near 2000 and in other cases is less than 100, specially for the Train data samples group.
+Here is an exploratory visualization of the data set. It is a bar chart showing how the data samples are not uniform for all signs. I mean that in some cases the number of samples of an specific sign is near 2000 and in other cases it is less than 100. This issue is a sensible characteristic,  specially for Train data samples group.
 
 in the next image it is possible to check the distribution of Train samples
 
@@ -76,20 +73,24 @@ in the next image it is possible to check the distribution of Validation samples
 
 #### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
-As a first step, I decided to normalize each sample image between -1 and 1. Here, I also converted values to 32-bit. After that I convert the images to grayscale to facilitate processing focusing in just one channel color. Image translation to create a duplicated information with random translation in order to create diversity in Train dataset. Image rotation to create a duplicated information with random rotation between -12° and 12º in order to create diversity in Train dataset. Image perspective (zoom) in order to create a duplicated information with random perspective in order to create diversity in Train dataset. Finally I applied a script for duplicating custom images to obtain homonegenous number of samples in the train information.
+As a first step, I decided to normalize each sample image between -1 and 1. Here, I also converted each pixel values to 32-bit data type. After that I also converted the images to grayscale to facilitate processing focusing in just one channel color. As a complement I performend the next image transformations:
+* image translation (soft random shift) in order to create a duplicated information with random translation in order to create diversity in train samples dataset, 
+* image rotation in order to create a duplicated information with random rotation between -12° and 12º in order to create diversity in Train dataset,
+* image perspective transformation (zoom) in order to create a duplicated information with random perspective. I also added a white noise to the image.
+* finally I used a script for duplicating custom images to obtain homonegenous number of samples in the train information. In this case the condition was that unless each traffic sign should have 1000 samples for the test dataset.
 
-Here is an example of a traffic sign image before and after grayscaling and normalizing.
+Here is an example of a traffic sign image before and after grayscaling and normalizing transformation.
 
 ![alt text][image10]
 
 
-Here is an example of rotation, translation, zoom, and white adding to images that I applied to new samples:
+Here is an example of rotation, translation, zoom, and white noise adding to an images. Parameters of each transformation were choosed randomly.
 
 ![alt text][image11]
 
-I decided to generate additional data because the distribution information indicates that some classes could be small in comparison of other ones. I increased the samples of some classes in order to provide similar chances to all samples during learning process.
+I decided to generate additional data because the distribution information indicates that the quantity of some classes could be small in comparison of other ones. I increased the samples of some classes in order to provide similar chances to all samples during learning process.
 
-To add more data to the the data set, I used the transformation imaegs  techniques described before. The number of samples to achieve the number of 1000 samples per each sign type was calculated and displayed in the notebook. It could be visualized in the next image.
+To add more data to the the data set I used typical transformation image techniques (described before). The number of samples to achieve the number of 1000 samples per each sign dataset was calculated and displayed in the notebook. It could be visualized in the next image.
 
 ![alt text][image12]
 
@@ -114,30 +115,23 @@ My final model consisted of the following layers:
 | RELU					|												|
 | Fully connected		| input=84, output=43       									|
 
-I have added tunable keep_prob using the variable dropout_custome = 0.8, this dropout layer was inserted after each activation layer (to avoid network overfitting).
-
+I have added tunable keep_prob, the best value were dropout_custome = 0.8, this dropout layer was inserted after each activation layer (to avoid network overfitting).
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
-The optimizer used is based on Cross entropy and softmax tool provided by TensorFlow. batch size=128 because in other cases the training process indicated overfitting. In order to guarantee the convergence of Neural network learning process we used 100 epochs. I have added tunable keep_prob using the variable dropout_custome = 0.8, this dropout layer was inserted after each activation layer (to avoid network overfitting).
+The optimizer used is based on Cross entropy and softmax which are tools provided by TensorFlow. Batch size=128 because in other cases the training process indicated an accuracy less than 9.3. Other important parameter was the number of epochs, that is why that in order to guarantee the convergence of Neural network learning process we used 100 epochs (using Amazon AWS was used in this scenario). I have added also a tunable keep_prob, this dropout layer was inserted after each activation layer.
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
-In spite that I run 100 epochs the training process indicates that validation accuracy was greated than 0.93 in the epoch 15 (the first time). After training we evaluated the Accuracy and I got an accuracy of 0.932 as it is described in following lines.
+In spite that I run 100 epochs the training process indicates that validation accuracy was greated than 0.93 in the epoch number 15 (the first time that validation accuracy was more than 0.93). When training process finished, we evaluated the accuracy, the value of accuracy was 0.932.
 
 My final model results were:
 * training set accuracy of 1
 * validation set accuracy of 0.953
 * test set accuracy of 0.932
 
-If an iterative approach was chosen:
+Finally I choosed the LeNet model adding a tunable keep_prob using the variable dropout_custome. The value that indicates better results was dropout_custome = 0.8.
 
-* I tried and architecture with a low dropout layer value (keep_prob) and less Hidden layers, this scenario shows that it was underfitting and with very poor validation accuracy rate. In the first try I had not incluyed also the image transformation to extra samples.
-
-* The small amount of hidden layers show a underfitting learning process during training.
-
-* Finally I choosed the LeNet model adding a tunable keep_prob using the variable dropout_custome = 0.8.
-
-In order to show that the model is working ok the next image indicated the validation accuracy = 0.953 and test accuracy = 0.932
+In order to show that the model is working sucessfully, the next image shows a validation accuracy = 0.953 (more than 0.93) and test accuracy = 0.932
 
 ![alt text][image9]
  
@@ -150,7 +144,7 @@ Here are five German traffic signs that I found on the web:
 
 ![alt text][image6] 
 
-I included five new German Traffic signs found on the web. They are visualized in the following lines and described in following lines. They are saved in the folder 'custome_signs_web/'
+I included five new German Traffic signs that I found on the web. They are  visualized and described in following lines. An importan information is that these new images are saved in the folder 'custome_signs_web/'
 
 * 'speed_20km_0.jpg'
 * 'no_passing_9.jpg'
@@ -158,12 +152,9 @@ I included five new German Traffic signs found on the web. They are visualized i
 * 'slipperyroad_23.jpg'
 * 'keep_right_38.jpg'
 
-The main particularity in all cases is the image resolution. In case of Yield signal it included a custome background of clouds, it is similar in the case of Speed limit (20km/h) signal.
-
-
+The main particularity in all cases is the image resolution. In case of Yield signal it included a custome background of clouds.
 
 ![alt text][image7] 
-![alt text][image8] 
 
 
 The first image might be difficult to classify because ...
@@ -181,11 +172,13 @@ Here are the results of the prediction:
 | Keep right			| Keep right      							|  38								|  
 
 
-In this step I document the performance of the model trained before, this performance is evaluated using the 5 figures obtained from the Internet. The accuracy results of prediction were excelent in all cases. So, accuracy was 100% for these samples.
+In this step I documented the performance of the model that was trained before, this performance is evaluated using 5 figures that were obtained from the Internet. The accuracy results of predictions were excellent in all cases. So, accuracy was 100% for these samples.
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
-The code for making predictions on my final model is located in the 29th cell of the Ipython notebook.
+The code for making predictions on my final model is located in the 29th cell of the Ipython notebook. I created some bars in order to show prediction results for each image traffic sign that were obtained from the web.
+
+![alt text][image8] 
 
 For the first image, the model is sure that this is a Speed limit (20km/h) sign (probability of 0.9909), and the image does contain a Speed limit (20km/h)  sign. The top five soft max probabilities were
 
