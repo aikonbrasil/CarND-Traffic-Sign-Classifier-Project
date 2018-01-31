@@ -233,4 +233,4 @@ For the fifth image, the model is sure that this is a No passing sign (probabili
 | .00				    | Speed limit (120km/h)							|
 
 ### Note
-It looks that images downloaded from internet were extremelly conservatives. This conservative scenario indicates an extraordinary accuracy of more than 9.3. Other complex images could be used in this context.
+It looks that images downloaded from internet were extremely conservatives. This conservative scenario indicates an extraordinary accuracy of more than 9.3. Other complex images could be used in this context.
